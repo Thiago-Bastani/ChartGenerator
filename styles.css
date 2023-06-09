@@ -1,0 +1,50 @@
+html,
+body {
+  width: 96vw;
+  height: 100vh;
+  margin: auto;
+}
+
+.content {
+  position: relative;
+  width: 100%;
+  height: 80%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* *{
+    border: 1px solid black;
+} */
+
+.row {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.tool-bar {
+  height: 3rem;
+  background-color: #000;
+  align-items: center;
+}
+
+.i-file::-webkit-file-upload-button {
+  visibility: hidden;
+}
+.i-file::before {
+  content: "Upload CSV";
+  display: inline-block;
+  background: white;
+  border: 1px solid #999;
+  border-radius: 3px;
+  padding: 5px 8px;
+  outline: none;
+  font-weight: 700;
+  font-size: 10pt;
+  margin-left: 1rem;
+}
