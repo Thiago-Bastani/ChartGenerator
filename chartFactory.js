@@ -1,7 +1,7 @@
 class chartFactory {
   constructor(
     data = ARRAY_OF_NUMBERS,
-    label = STRING,
+    label = ARRAY,
     labels = ARRAY,
     type = STRING,
     canvasId = STRING
@@ -47,13 +47,17 @@ class chartFactory {
   }
 
   setDatasets(label, data, borderWidth) {
-    this._datasets = [
-      {
-        label: label,
-        data: data,
+    this._datasets = [];
+    label = label.filter((value, index) => index !== 0); // tirar coluna de labels
+    console.log(label);
+    for (let i = 0; i < data.length; i++) {
+      console.log(data[i]);
+      this._datasets.push({
+        label: label[i],
+        data: data[i],
         borderWidth: borderWidth,
-      },
-    ];
+      });
+    }
   }
 
   setOptions(beginAtZero) {
@@ -77,6 +81,10 @@ class chartFactory {
     });
   }
 
+  /***
+   * TODO: fix error messages
+   */
+
   validate(data, label, labels, type) {
     // check if the values are null
     if (data === null) throw "Data cannot be null";
@@ -85,7 +93,7 @@ class chartFactory {
     if (type === null) throw "Type cannot be null";
     // check types
     if (typeof data !== "object") throw "Data has to be an array";
-    if (typeof label !== "string") throw "Label has to be a string";
+    if (typeof label !== "object") throw "Label has to be an array";
     if (typeof labels !== "object") throw "labels has to be an array";
     if (typeof type !== "string") throw "type has to be a string";
     // check if the values are empty
@@ -94,13 +102,13 @@ class chartFactory {
     if (labels.length === 0) throw "Labels cannot be an empty array";
     if (!type) throw "Type cannot be empty";
     // check array of numbers
-    data.forEach((number) => {
-      if (typeof number !== "number")
-        throw "Data has to be an array of numbers";
-    });
+    // data.forEach((number) => {
+    //   if (typeof number !== "number" || typeof number !== "object")
+    //     throw "Data has to be an array of numbers";
+    // });
     // check if the shapes match
-    if (data.length !== labels.length)
-      throw "The data and the labels need to have the same size";
+    // if (data.length !== labels.length)
+    //   throw "The data and the labels need to have the same size";
 
     return true;
   }
