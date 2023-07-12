@@ -11,18 +11,12 @@ document.getElementById("csvFile").addEventListener("change", (element) => {
     for (i = 1; i < qtdColunas; i++) {
       let valoresAux = [];
       for (j = 0; j < qtdLinhas; j++) {
-        if (qtdColunas > 2) {
-          valoresAux.push(parseFloat(fileTextLines[j].split(",")[i]));
-        } else {
-          valores = fileTextLines.map((lines) =>
-            parseFloat(lines.split(",")[j])
-          );
-        }
+        valoresAux.push(parseFloat(fileTextLines[j].split(",")[i]));
       }
       valores.push(valoresAux);
     }
     let cabecalho = fileText.split("\r\n")[0].split(",");
-    chart = new chartFactory(valores, cabecalho, labels, "bar", "myChart");
+    chart = new chartFactory(valores, cabecalho, labels, "line", "myChart");
     chart.createChart();
   });
 });
